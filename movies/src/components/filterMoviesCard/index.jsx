@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -10,7 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg';
-import React, {useState, useEffect}  from "react";
+
 
 
 const formControl = 
@@ -42,10 +42,11 @@ export default function FilterMoviesCard(props) {
       // eslint-disable-next-line
   }, []);
 
-  const handleChange = (e, type, value) => {
+    const handleChange = (e, type, value) => {
     e.preventDefault()
-    // Completed later
-  };
+    props.onUserInput(type, value)   // NEW
+  }
+
   const handleTextChange = e => {
     handleChange(e, "name", e.target.value)
   }

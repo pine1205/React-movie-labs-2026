@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import PageTemplate from '../components/templateMovieListPage'
+import PageTemplate from '../components/templateMovieListPage';
+import { getMovies } from "../api/tmdb-api";
+
 
 const HomePage = (props) => {
   const [movies, setMovies] = useState([]);
@@ -13,18 +15,14 @@ const HomePage = (props) => {
     setMovies(updatedMovies);
   };
 
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&page=1`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        return json.results;
-      })
-      .then((movies) => {
-        setMovies(movies);
-      });
+  // useEffect fetches data from source 
+// useState stores info
+ useEffect(() => {
+    getMovies().then(movies => {
+      setMovies(movies);
+    });
   }, []);
+
 
   return (
     <PageTemplate

@@ -1,23 +1,53 @@
 import React from "react";
-import { useParams } from 'react-router';
+import MovieHeader from "../components/headerMovie/";
 import MovieDetails from "../components/movieDetails/";
-import PageTemplate from "../components/templateMoviePage";
-import useMovie from "../hooks/useMovie";
+import Grid from "@mui/material/Grid";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
 
 const MoviePage = (props) => {
-  const { id } = useParams();
-  const [movie] = useMovie(id);
+  const movie = props.movie;
+  const images = props.images;
 
   return (
     <>
       {movie ? (
         <>
-          <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
-          </PageTemplate>
+          <MovieHeader movie={movie} />
+          <Grid container spacing={5} style={{ padding: "15px" }}>
+            <Grid size={{xs: 3}}>
+              <div sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-around",
+              }}>
+                <ImageList
+                  sx={{
+                    height: "100vh",
+                  }}
+                  cols={1}
+                >
+                  {images.map((image) => (
+                    <ImageListItem
+                      key={image}
+                      cols={1}
+                    >
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500/${image}`}
+                        alt={image}
+                      />
+                    </ImageListItem>
+                  ))}
+                </ImageList>
+              </div>
+            </Grid>
+            <Grid size={{xs: 9}}>
+              <MovieDetails movie={movie} />
+            </Grid>
+          </Grid>
         </>
       ) : (
-        <p>Waiting for movie details</p>
+        <h2>Waiting for API data</h2>
       )}
     </>
   );

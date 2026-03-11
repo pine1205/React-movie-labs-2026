@@ -1,16 +1,19 @@
 import React from "react";
-import { getMovies } from "../api/tmdb-api";
+import { getnowPlaying } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
+//import PlaylistAddIcon from "mui/icons-material/PlaylistAdd";
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 
-const HomePage = (props) => {
+
+
+const nowPlaying = (props) => {
 
   const { data, error, isPending, isError  } = useQuery({
-    queryKey: ['discover'],
-    queryFn: getMovies,
+    queryKey: ['nowPlaying'],
+    queryFn: getnowPlaying,
   })
   
   if (isPending) {
@@ -23,23 +26,17 @@ const HomePage = (props) => {
   
   const movies = data.results;
 
-  // Redundant, but necessary to avoid app crashing.
-  const favorites = movies.filter(m => m.favorite)
-  localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
-
-
-
 
    return (
       <PageTemplate
-        title="Discover Movies"
+        title="Now Playing Movies"
         movies={movies}
-        action={(movie) => {
+       action={(movie) => {
           return <AddToFavoritesIcon movie={movie} />
         }}
+        
       />
   );
 
 }
-export default HomePage;
+export default nowPlaying;

@@ -23,6 +23,23 @@ const chip = { margin: 0.5 };
 const MovieDetails = ( props) => {
   const movie = props.movie
 
+  //fetching movies from data
+  const { data, error, isPending, isError } = useQuery({
+    queryKey: ['similar', { id: movie.id }],
+    queryFn: similarMovies,
+  });
+
+  if (isPending) {
+    return <Spinner />;
+  }
+
+  if (isError) {
+    return <h1>{error.message}</h1>;
+  }
+  
+ console.log(data);
+
+
   return (
     <>
       <Typography variant="h5" component="h3">

@@ -9,7 +9,10 @@ import SiteHeader from "./components/siteHeader";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import MoviesContextProvider from "./contexts/moviesContext";
-import AddMovieReviewPage from './pages/addMovieReviewPage'
+import AddMovieReviewPage from './pages/addMovieReviewPage';
+import NowPlaying from './pages/nowPlaying';
+import Popular from './pages/popular';
+import TopRated from './pages/topRated';
 
 
 
@@ -31,6 +34,10 @@ const App = () => {
         <SiteHeader />
         <MoviesContextProvider>
           <Routes>
+ <Route path="/movies/nowPlaying/" element={ <NowPlaying /> } />
+  <Route path="/movies/popular/" element={ <Popular /> } />
+   <Route path="/movies/topRated/" element={ <TopRated /> } />
+
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             <Route path="/reviews/:id" element={ <MovieReviewPage /> } />

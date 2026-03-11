@@ -16,13 +16,15 @@ export const getMovies = () => {
 
 
 
+
+
 export const getMovie = id => {
   return fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
   ).then(res => res.json());
 };
 
-  export const getGenres = () => {
+    export const getGenres = () => {
     return fetch(
       "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
         import.meta.env.VITE_TMDB_KEY +
@@ -39,6 +41,7 @@ export const getMovie = id => {
       throw error
    });
   };
+
 
 
 export const getMovieImages = (id) => {

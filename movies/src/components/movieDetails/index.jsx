@@ -8,6 +8,9 @@ import StarRate from "@mui/icons-material/StarRate";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
+import { useQuery } from "@tanstack/react-query";
+import { similarMovies } from "../../api/tmdb-api";
+import Spinner from '../spinner';
 
 
 const root = {
@@ -38,6 +41,7 @@ const MovieDetails = ( props) => {
   }
   
  console.log(data);
+ let simMovies = data.results;
 
 
   return (

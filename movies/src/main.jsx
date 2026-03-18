@@ -14,6 +14,8 @@ import NowPlaying from './pages/nowPlaying';
 import Popular from './pages/popular';
 import TopRated from './pages/topRated';
 import Upcoming from './pages/upcoming';
+import './myCSS.css';
+
 
 
 

@@ -3,6 +3,8 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
+import BasicPagination from "../pagination";
+import BasicTimeline from "../MUI_basicTimeline";
 
 function MovieListPageTemplate({ movies, title, action }) {
 
@@ -24,15 +26,18 @@ function MovieListPageTemplate({ movies, title, action }) {
   };
 
   return (
-    <Grid container>
+    <Grid container sx={{backgroundColor: "darkred"}}>
       <Grid size={12}>
         <Header title={title} />
       </Grid>
-      <Grid container sx={{flex: "1 1 500px"}}>
+
+      <Grid container sx={{flex: "1 1 500px"}}
+      >
         <Grid 
           key="find" 
           size={{xs: 12, sm: 6, md: 4, lg: 3, xl: 2}} 
           sx={{padding: "20px"}}
+        
         >
           <FilterCard
             onUserInput={handleChange}
@@ -41,6 +46,9 @@ function MovieListPageTemplate({ movies, title, action }) {
           />
         </Grid>
                <MovieList action={action} movies={displayedMovies}></MovieList>
+               <BasicPagination />
+               <BasicTimeline />
+                
 
       </Grid>
     </Grid>

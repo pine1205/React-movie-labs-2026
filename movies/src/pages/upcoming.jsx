@@ -3,8 +3,11 @@ import { getupcoming } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
-//import PlaylistAddIcon from "mui/icons-material/PlaylistAdd";
-import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
+import BasicTimeline from '../components/MUI_basicTimeline';
+
+import BasicPagination from '../components/pagination';
 
 
 
@@ -33,9 +36,11 @@ const upcoming = (props) => {
         movies={movies}
        action={(movie) => {
           return <AddToFavoritesIcon movie={movie} />
+          return <PlaylistAddIcon movie={movie} />
         }}
         
       />
+      
   );
 
 }

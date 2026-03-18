@@ -22,7 +22,7 @@ const formControl =
   {
     margin: 1,
     minWidth: "90%",
-    backgroundColor: "rgb(255, 255, 255)"
+    backgroundColor: "rgb(243, 113, 250)"
   };
 
 export default function FilterMoviesCard(props) {
@@ -64,7 +64,7 @@ export default function FilterMoviesCard(props) {
   return (
     <Card 
       sx={{
-        backgroundColor: "rgb(204, 204, 0)"
+        backgroundColor: " rgb(198, 245, 213)"
       }} 
       variant="outlined">
       <CardContent>
@@ -84,6 +84,7 @@ export default function FilterMoviesCard(props) {
 
         <FormControl sx={{...formControl}}>
           <InputLabel id="genre-label">Genre</InputLabel>
+
             <Select
     labelId="genre-label"
     id="genre-select"

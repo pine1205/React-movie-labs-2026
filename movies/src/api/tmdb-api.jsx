@@ -110,7 +110,7 @@ export const getMovie = (args) => {
 };
 
 //similarMovies
-export const similarMovies = (args) => {
+export const getsimilarMovies = (args) => {
   console.log(args)
   const [, idPart] = args.queryKey;
   const { id } = idPart;

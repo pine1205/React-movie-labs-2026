@@ -9,12 +9,9 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
-import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
-
 
 import Spinner from '../spinner';
-import { getMovies } from "../../api/tmdb-api";
+import { getsimilarMovies } from "../../api/tmdb-api";
 
 
 const root = {
@@ -27,13 +24,13 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ( props) => {
+const MovieSimilar = ( props) => {
   const movie = props.movie
 
   //fetching movies from data
   const { data, error, isPending, isError } = useQuery({
     queryKey: ['movie', { id: movie.id }],
-    queryFn: getMovies,
+    queryFn: getsimilarMovies,
   });
 
   if (isPending) {
@@ -98,4 +95,4 @@ const MovieDetails = ( props) => {
       </>
   );
 };
-export default MovieDetails ;
+export default MovieSimilar ;

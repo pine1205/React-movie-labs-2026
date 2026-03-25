@@ -10,7 +10,8 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
+import MovieReviews from "../movieReviews";
+
 
 
 import Spinner from '../spinner';
@@ -48,6 +49,8 @@ const MovieDetails = ( props) => {
  let simMovies = data.results;
 
 
+
+
   return (
     <>
       <Typography variant="h5" component="h3">
@@ -71,6 +74,23 @@ const MovieDetails = ( props) => {
           </li>
         ))}
       </Paper>
+
+
+
+
+<Paper component="ul" 
+       sx={{...root}}>
+
+       <li>
+          <Chip label="Production Countries" sx={{...chip}} color="primary" />
+        </li>  
+  {movie.production_countries.map((country) => (
+    <li key={country.iso_3166_1}>
+      <Chip label={country.name} sx={{...chip}} />
+    </li>
+  ))}
+</Paper>
+
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
@@ -99,3 +119,6 @@ const MovieDetails = ( props) => {
   );
 };
 export default MovieDetails ;
+
+
+

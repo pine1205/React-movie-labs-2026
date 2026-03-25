@@ -14,6 +14,7 @@ import Spinner from '../spinner';
 import { getsimilarMovies } from "../../api/tmdb-api";
 
 
+
 const root = {
     display: "flex",
     justifyContent: "center",
@@ -29,7 +30,7 @@ const MovieSimilar = ( props) => {
 
   //fetching movies from data
   const { data, error, isPending, isError } = useQuery({
-    queryKey: ['movie', { id: movie.id }],
+    queryKey: ['similar', { id: movie.id }],
     queryFn: getsimilarMovies,
   });
 

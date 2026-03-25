@@ -3,18 +3,18 @@ import { getsimilarMovies } from "../api/tmdb-api";
 import { useLocation } from "react-router";
 import PageTemplate from "../components/templateMoviePage";
 import MovieSimilar from "../components/movieSimilar";
+import { useParams } from 'react-router';
+import { useQuery } from "@tanstack/react-query";
+import Spinner from "../components/spinner";
 
 
 
 
 
-
-
-
-const similarMovies = (props) => {
+const SimilarMovies = (props) => {
   const { id } = useParams();
     const { data: movie, error, isPending, isError  } = useQuery({
-    queryKey: ['similar', {id: id}],
+    queryKey: ['similar', {id: movie.id}],
     queryFn: getsimilarMovies,
   })
 
@@ -27,12 +27,15 @@ const similarMovies = (props) => {
   }
 
 
+ console.log(movie)
+let similar = movie.results;
+
   return (
     <>
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-            <MovieSimilar movie={movie} />
+            <MovieSimilar movie={similar} />
           </PageTemplate>
         </>
       ) : (
@@ -42,4 +45,4 @@ const similarMovies = (props) => {
   );
 };
 
-export default similarMovies;
+export default SimilarMovies;

@@ -16,6 +16,7 @@ import TopRated from './pages/topRated';
 import Upcoming from './pages/upcoming';
 import Similar from './pages/similar';
 import './myCSS.css';
+import CastPage from './pages/castPage';
 
 
 
@@ -45,6 +46,7 @@ const App = () => {
 
 
          <Route path="movie/:id/similar" element={ <Similar/> } />
+         <Route path="movie/:id/cast" element={ <CastPage/> } />
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             <Route path="/reviews/:id" element={ <MovieReviewPage /> } />

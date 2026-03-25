@@ -11,6 +11,11 @@ import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
+import {getMovieCast }from "../../api/tmdb-api";
+import MovieSimilar from "../movieSimilar";
+import Button from "@mui/material/Button";
+import { Link } from "react-router";
+
 
 
 
@@ -31,13 +36,14 @@ const chip = { margin: 0.5 };
 const MovieDetails = ( props) => {
   const movie = props.movie
 
-  //fetching movies from data
-  const { data, error, isPending, isError } = useQuery({
-    queryKey: ['movie', { id: movie.id }],
-    queryFn: getMovies,
-  });
+ 
+  
 
-  if (isPending) {
+  const { data, error, isPending, isError } = useQuery({
+    queryKey: ['cast', { id: movie.id }],
+    queryFn: getMovieCast,
+  });
+ if (isPending) {
     return <Spinner />;
   }
 
@@ -45,9 +51,17 @@ const MovieDetails = ( props) => {
     return <h1>{error.message}</h1>;
   }
   
- console.log(data);
- let simMovies = data.results;
 
+
+
+
+
+ console.log(data)
+let cast = data.cast;
+console.log(movie);
+let simMovies = movie.results;
+//cast - name of an array
+//results - same
 
 
 
@@ -75,8 +89,31 @@ const MovieDetails = ( props) => {
         ))}
       </Paper>
 
-
-
+  <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Cast" sx={{...chip}} color="primary" />
+        </li>
+        {cast.map((g) => (
+          <li key={g.name}>
+            <Chip label={g.name} sx={{...chip}} />
+          </li>
+        ))}
+      </Paper>
+      <Paper component="ul" sx={{...root}}>
+        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
+        <Chip
+          icon={<MonetizationIcon />}
+          label={`${movie.revenue.toLocaleString()}`}
+        />
+        <Chip
+          icon={<StarRate />}
+          label={`${movie.vote_average} (${movie.vote_count})`}
+        />
+        <Chip label={`Released: ${movie.release_date}`} />
+      </Paper>
 
 <Paper component="ul" 
        sx={{...root}}>
@@ -91,18 +128,23 @@ const MovieDetails = ( props) => {
   ))}
 </Paper>
 
-      <Paper component="ul" sx={{...root}}>
-        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
-        <Chip
-          icon={<MonetizationIcon />}
-          label={`${movie.revenue.toLocaleString()}`}
-        />
-        <Chip
-          icon={<StarRate />}
-          label={`${movie.vote_average} (${movie.vote_count})`}
-        />
-        <Chip label={`Released: ${movie.release_date}`} />
-      </Paper>
+
+ <Link to={`/movie/${movie.id}/similar`}>
+          <Button variant="outlined" size="large"  sx={{ fontSize: "1.5rem", backgroundColor: "lightgreen", color: "white"}} 
+          color="primary">
+            Similar Movies
+          </Button>
+        </Link>
+
+<Link to={`/movie/${movie.id}/cast`}>
+          <Button variant="outlined" size="large"  sx={{ fontSize: "1.5rem", backgroundColor: "lightgreen", color: "white"}} 
+          color="primary">
+            Movie Cast Page
+          </Button>
+        </Link>
+
+
+
       <Fab
         color="secondary"
         variant="extended"

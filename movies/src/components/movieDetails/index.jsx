@@ -143,6 +143,12 @@ let simMovies = movie.results;
           </Button>
         </Link>
 
+<Link to={`/movie/${movie.id}/recommendations`}>
+          <Button variant="outlined" size="large"  sx={{ fontSize: "1.5rem", backgroundColor: "lightblue", color: "white"}} 
+          color="primary">
+            Recommendations
+          </Button>
+        </Link>
 
 
       <Fab

@@ -17,6 +17,7 @@ import Upcoming from './pages/upcoming';
 import Similar from './pages/similar';
 import './myCSS.css';
 import CastPage from './pages/castPage';
+import Recommendations from './pages/recommendations';
 
 
 
@@ -47,6 +48,7 @@ const App = () => {
 
          <Route path="movie/:id/similar" element={ <Similar/> } />
          <Route path="movie/:id/cast" element={ <CastPage/> } />
+         <Route path="movie/:id/recommendations" element={ <Recommendations/> } />
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             <Route path="/reviews/:id" element={ <MovieReviewPage /> } />

@@ -15,6 +15,7 @@ const root = {
     listStyle: "none",
     padding: 1.5,
     margin: 0,
+    background: "linear-gradient( #7a2af1 0%, #7e9fe8 0%, #c4faf6 100%)"
 };
 const chip = { margin: 0.5 };
 
@@ -48,12 +49,23 @@ return (
         sx={{...root}}
       >
         <li>
-          <Chip label="Cast" sx={{...chip}} color="primary" />
+          <Chip label="Cast" sx={{...chip, fontSize: "30px", backgroundColor: "silver",color: "purple", margin: "50px", width: "500px", height: "50px"}} color="primary" />
         </li>
         {cast.map((g) => (
-          <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
-          </li>
+          <li key={g.name}
+          style={{ display: "flex", flexDirection: "column",
+           alignItems: "center", marginBottom: "20px" }}>
+
+ {g.profile_path && (
+          <img 
+         src={`https://image.tmdb.org/t/p/w200${g.profile_path}`}
+        alt={g.title} 
+        style={{ width: "190px", borderRadius: "30px", margin: "30px" }}
+      />
+     )}
+
+      <Chip label={g.name} sx={{...chip, fontSize: "20px", backgroundColor: "silver", color: "purple",  width: "350px", height: "50px"}} />
+   </li>
         ))}
       </Paper>
       )
